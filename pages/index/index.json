@@ -1,3 +1,11 @@
 {
-    "defaultTitle": "EF英孚教育"
+    "defaultTitle": "EF英孚教育",
+    "usingComponents": {
+        "list": "mini-antui/es/list/index",
+        "list-item": "mini-antui/es/list/list-item/index",
+        "input-item": "mini-antui/es/input-item/index",
+        "picker-item": "mini-antui/es/picker-item/index",
+        "flex": "mini-antui/es/flex/index",
+        "flex-item": "mini-antui/es/flex/flex-item/index"
+    }
 }

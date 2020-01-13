@@ -1,5 +1,12 @@
 Page({
   data: {
+    canIUseAuthButton: true,
+    nickName: "",
+    mobile: "",
+		gender: ['男', '女'],
+    index: 0,
+		age: ['18岁以下', '19-22岁', '23-26岁', '27-35岁', '36-40岁', '41-50岁', '51岁'],
+    ageIndex: 0,
     hasUserInfo: false
   },
   onLoad(query) {
@@ -11,6 +18,28 @@ Page({
   },
   onShow() {
     // 页面显示
+  },
+  onItemInput(e) {
+    this.setData({
+      [e.target.dataset.field]: e.detail.value,
+    });
+  },
+  onClear(e) {
+    this.setData({
+      [e.target.dataset.field]: '',
+    });
+  },
+  bindPickerChange(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value);
+    this.setData({
+      index: e.detail.value,
+    });
+  },
+  bindObjPickerChange(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value);
+    this.setData({
+      ageIndex: e.detail.value,
+    });
   },
   getUserInfo() {
     my.getAuthCode({
@@ -28,16 +57,38 @@ Page({
           success: (userInfo) => {
             console.log(`userInfo:`, userInfo);
             this.setData({
+              nickName: userInfo.nickName,
               userInfo,
               hasUserInfo: true,
             });
-            abridge.alert({
-              title: JSON.stringify(userInfo), // alert 框的标题
-            });
+            // abridge.alert({
+            //   title: JSON.stringify(userInfo), // alert 框的标题
+            // });
           }
         });
       }
     });
+  },
+  onGetAuthorize() {
+    var that = this;
+    my.getPhoneNumber({
+      success: (res) => {
+        let encryptedData = res.response;
+        console.log(res);
+        if (encryptedData.msg == 'Success') {
+          that.setData({
+            mobile: encryptedData.mobile
+          })
+        }
+      },
+      fail: (res) => {
+        console.log(res);
+        console.log('getPhoneNumber_fail');
+      },
+    });
+  },
+  onAuthError(e) {
+    console.log(e);
   },
   onHide() {
     // 页面隐藏

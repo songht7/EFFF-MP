@@ -1,8 +1,43 @@
 <!-- 小程序收藏组件，更多高级用法请参考文档：https://docs.alipay.com/mini/component/component-favorite -->
 <view class="page">
   <view class="page-section">
-    <view class="top-logo">
+    <view class="img-block top-logo">
       <image class="logo" mode="aspectFit" src="/image/p2-logo-icon.png" />
     </view>
+    <view class="img-block banner">
+      <image class="logo" mode="aspectFit" src="/image/p2-banner.jpg" />
+    </view>
+    <list>
+      <input-item data-field="nickName" placeholder="姓名" type="text" value="{{nickName}}" clear="{{true}}" onInput="onItemInput" onClear="onClear">
+        姓名
+        <view slot="extra" class="extra" onTap="getUserInfo"></view>
+      </input-item>
+      <input-item data-field="mobile" placeholder="手机号" type="phone" value="{{mobile}}" clear="{{true}}" onInput="onItemInput" onClear="onClear">
+        手机号
+        <button slot="extra" a:if="{{canIUseAuthButton}}" open-type="getAuthorize" onGetAuthorize="onGetAuthorize" onError="onAuthError" scope='phoneNumber'>
+          授权手机号
+        </button>
+      </input-item>
+      <flex>
+        <flex-item>
+          <picker onChange="bindPickerChange" value="{{index}}" range="{{gender}}">
+            <view class="row">
+              <view class="row-title">性别</view>
+              <view class="row-extra">{{gender[index]}}</view>
+              <image class="row-arrow" src="/image/arrowright.png" mode="aspectFill" />
+            </view>
+          </picker>
+        </flex-item>
+        <flex-item>
+          <picker onChange="bindObjPickerChange" value="{{ageIndex}}" range="{{age}}">
+            <view class="row">
+              <view class="row-title">年龄</view>
+              <view class="row-extra">{{age[ageIndex]}}</view>
+              <image class="row-arrow" src="/image/arrowright.png" mode="aspectFill" />
+            </view>
+          </picker>
+        </flex-item>
+      </flex>
+    </list>
   </view>
 </view>
