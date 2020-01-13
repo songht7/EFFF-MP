@@ -2,19 +2,21 @@
 <view class="page">
   <view class="page-section">
     <view class="img-block top-logo">
-      <image class="logo" mode="aspectFit" src="/image/p2-logo-icon.png" />
+      <image class="logo" mode="widthFix" src="/image/p2-logo-icon.png"/>
     </view>
     <view class="img-block banner">
-      <image class="logo" mode="aspectFit" src="/image/p2-banner.jpg" />
+      <image class="imgs" mode="widthFix" src="/image/p2-banner.jpg" />
     </view>
     <list>
       <input-item data-field="nickName" placeholder="姓名" type="text" value="{{nickName}}" clear="{{true}}" onInput="onItemInput" onClear="onClear">
         姓名
-        <view slot="extra" class="extra" onTap="getUserInfo"></view>
+        <button slot="extra" class="authorBtn" onTap="getUserInfo">
+          授权
+        </button>
       </input-item>
       <input-item data-field="mobile" placeholder="手机号" type="phone" value="{{mobile}}" clear="{{true}}" onInput="onItemInput" onClear="onClear">
         手机号
-        <button slot="extra" a:if="{{canIUseAuthButton}}" open-type="getAuthorize" onGetAuthorize="onGetAuthorize" onError="onAuthError" scope='phoneNumber'>
+        <button slot="extra" class="authorBtn" a:if="{{canIUseAuthButton}}" open-type="getAuthorize" onGetAuthorize="onGetAuthorize" onError="onAuthError" scope='phoneNumber'>
           授权手机号
         </button>
       </input-item>
@@ -38,6 +40,21 @@
           </picker>
         </flex-item>
       </flex>
+      <input-item data-field="city" placeholder="城市" type="phone" value="{{city}}" clear="{{true}}" onInput="onItemInput" onClear="onClear">
+        城市
+      </input-item>
     </list>
+    <view class="img-block banner">
+      <image class="imgs" mode="widthFix" src="/image/p2-i1.jpg" />
+    </view>
+    <view class="img-block banner">
+      <image class="imgs" mode="widthFix" src="/image/p2-i2.jpg" />
+    </view>
+    <view class="img-block banner">
+      <image class="imgs" mode="widthFix" src="/image/p2-i3.jpg" />
+    </view>
+    <view class="img-block banner">
+      <image class="imgs" mode="widthFix" src="/image/footer-img.jpg" />
+    </view>
   </view>
 </view>

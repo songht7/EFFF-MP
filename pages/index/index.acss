@@ -1,15 +1,16 @@
 .top-logo{height: 100rpx;padding: 20rpx 5%;width: 90%}
-.logo{height: 100%}
-.banner{height: 200rpx}
-.extra {
-  background-image: url('https://gw.alipayobjects.com/zos/rmsportal/dOfSJfWQvYdvsZiJStvg.svg');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: right center;
-  opacity: 0.2;
-  height: 20px;
-  width: 20px;
-  padding-left: 10px;
+.logo{width: 50%;}
+.imgs{width: 100%;}
+.authorBtn {
+  height: 50rpx;
+  width: auto;
+  border-radius: 10rpx;
+  background:rgb(250, 249, 249);
+  border-color:#ddd;
+  color: #333;
+  line-height: 1.2;
+  font-size:28rpx;
+  padding: 2rpx 10rpx;
 }
 
 .row {
