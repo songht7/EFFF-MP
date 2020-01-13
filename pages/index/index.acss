@@ -7,8 +7,8 @@
   border-radius: 10rpx;
   background:rgb(250, 249, 249);
   border-color:#ddd;
-  color: #333;
-  line-height: 1.2;
+  color: #666;
+  line-height: 1.4;
   font-size:28rpx;
   padding: 2rpx 10rpx;
 }
@@ -23,7 +23,7 @@
   flex: 1;
   padding-top: 28rpx;
   padding-bottom: 28rpx;
-  font-size: 34rpx;
+  font-size: 28rpx;
   color: #000;
 }
 

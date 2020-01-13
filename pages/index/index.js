@@ -2,10 +2,14 @@ Page({
   data: {
     canIUseAuthButton: true,
     nickName: "",
+    avatar: "",
     mobile: "",
-		gender: ['男', '女'],
+    city: "",
+    province: "",
+    gender: "",
+    genderList: ['男', '女'],
     index: 0,
-		age: ['18岁以下', '19-22岁', '23-26岁', '27-35岁', '36-40岁', '41-50岁', '51岁'],
+    age: ['18岁以下', '19-22岁', '23-26岁', '27-35岁', '36-40岁', '41-50岁', '51岁'],
     ageIndex: 0,
     hasUserInfo: false
   },
@@ -41,6 +45,25 @@ Page({
       ageIndex: e.detail.value,
     });
   },
+  onGetAuthorize(res) {
+    my.getOpenUserInfo({
+      fail: (fail) => {
+        console.log(fail);
+      },
+      success: (res) => {
+        let userInfo = JSON.parse(res.response).response // 以下方的报文格式解析两层 response
+        this.setData({
+          nickName: userInfo.nickName,
+          avatar: userInfo.avatar,
+          city: userInfo.city,
+          province: userInfo.province,
+          gender: userInfo.gender,
+          userInfo,
+          hasUserInfo: true,
+        });
+      }
+    });
+  },
   getUserInfo() {
     my.getAuthCode({
       scopes: 'auth_user',
@@ -52,7 +75,7 @@ Page({
         // then
         my.getAuthUserInfo({
           fail: (error) => {
-            console.error('getAuthUserInfo', error);
+            console.error('getAuthUserInfo ', error);
           },
           success: (userInfo) => {
             console.log(`userInfo:`, userInfo);

@@ -11,8 +11,11 @@
       <input-item data-field="nickName" placeholder="姓名" type="text" value="{{nickName}}" clear="{{true}}" onInput="onItemInput" onClear="onClear">
         姓名
         <button slot="extra" class="authorBtn" onTap="getUserInfo">
-          授权
+          授权基础信息
         </button>
+        <!-- <button slot="extra" class="authorBtn" a:if="{{canIUseAuthButton}}" open-type="getAuthorize" onGetAuthorize="onGetAuthorize" onError="onAuthError" scope='userInfo'>
+          授权基础信息
+        </button> -->
       </input-item>
       <input-item data-field="mobile" placeholder="手机号" type="phone" value="{{mobile}}" clear="{{true}}" onInput="onItemInput" onClear="onClear">
         手机号
@@ -22,10 +25,10 @@
       </input-item>
       <flex>
         <flex-item>
-          <picker onChange="bindPickerChange" value="{{index}}" range="{{gender}}">
+          <picker onChange="bindPickerChange" value="{{index}}" range="{{genderList}}">
             <view class="row">
               <view class="row-title">性别</view>
-              <view class="row-extra">{{gender[index]}}</view>
+              <view class="row-extra">{{genderList[index]}}</view>
               <image class="row-arrow" src="/image/arrowright.png" mode="aspectFill" />
             </view>
           </picker>
