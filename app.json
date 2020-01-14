@@ -1,8 +1,9 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/thx/thx"
   ],
   "window": {
-    "defaultTitle": "My App"
+    "defaultTitle": "EF英孚教育"
   }
 }

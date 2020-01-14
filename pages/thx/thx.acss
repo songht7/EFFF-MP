@@ -1,0 +1,65 @@
+.ef-page-thx {
+		background: url(/image/page-thanks.jpg) 50% 0 no-repeat #0E0E0E;
+		width: 100%;
+		height: 100%;
+		min-height: 1200rpx;
+		color: #fff;
+		background-size: contain;
+		padding: 160rpx 0 0;
+	}
+
+	.page-cont {
+		width: 90%;
+		margin: 0 auto;
+	}
+
+	.icon {
+		width: 100%;
+		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100rpx;
+	}
+
+	.good-img {
+		height: 100%;
+	}
+
+	.line {
+		width: 100rpx;
+		margin: 40rpx auto;
+		height: 2rpx;
+		overflow: hidden;
+		background: #fff;
+	}
+
+	.page-title {
+		font-weight: lighter;
+		font-size: 46rpx;
+		text-align: center;
+		line-height: 3;
+		letter-spacing: 4rpx;
+	}
+
+	.page-views {
+		text-align: center;
+		line-height: 2;
+		font-size: 30rpx;
+		letter-spacing: 2rpx;
+		padding: 20rpx 0 50rpx;
+	}
+
+	.qrbox {
+		text-align: center;
+		color: #CCCCCC;
+	}
+
+	.qr-code {
+		display: block;
+		width: 40%;
+		margin: 0 auto 40rpx;
+	}
+	.qr-code2{
+		width: 80%;
+	}

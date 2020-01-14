@@ -1,0 +1,14 @@
+<view class="ef-page-thx">
+  <view class="page-cont">
+    <view class="icon">
+      <image class="good-img" src="/image/good.png" mode="aspectFit" />
+    </view>
+    <view class="page-title">感谢您的注册</view>
+    <view class="line"></view>
+    <view class="page-views">稍后将会有课程顾问和您联系</view>
+    <!-- <view class="qrbox ">
+      <image class="qr-code" src="/image/customer_qrcode.png" mode="aspectFill" />
+      <view class="qrtxt hide">扫一扫 联系客服</view>
+    </view> -->
+  </view>
+</view>
