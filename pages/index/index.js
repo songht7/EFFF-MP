@@ -1,4 +1,5 @@
 import graceChecker from "/util/graceChecker.js";
+import { Interface } from "/util/util.js";
 Page({
   data: {
     article_id: 35,
@@ -101,12 +102,31 @@ Page({
     my.getPhoneNumber({
       success: (res) => {
         let encryptedData = res.response;
+        let url = Interface.apiurl + Interface.addr.getPhone;
         console.log(res);
-        if (encryptedData.msg == 'Success') {
-          that.setData({
-            mobile: encryptedData.mobile
-          })
-        }
+        console.log(url);
+        my.request({
+          url: url,
+          data: encryptedData,
+          success: function (res) {
+            console.log(res);
+            if (res.msg == 'Success') {
+              that.setData({
+                mobile: res.mobile
+              })
+            }
+          },
+          fail: function (res) {
+            console.log(res);
+            my.showToast({
+              type: 'none',
+              content: '授权手机号失败',
+              duration: 2000,
+              success: () => { },
+            });
+          },
+          complete: function (res) { }
+        });
       },
       fail: (res) => {
         console.log(res);
@@ -154,6 +174,7 @@ Page({
     if (checkRes) {
       console.log("age:", _this.data.age);
       var data2DB = {
+        "avatar": _this.data.avatar,
         "name": formData.UserName + ' --Source From - alipay',
         "age_range": _this.data.age[formData.Age],
         "sex": _this.data.genderList[formData.Gender],
@@ -162,8 +183,8 @@ Page({
         "article_id": _this.data.article_id
       };
       console.log("data2DB:", data2DB);
-      my.httpRequest({
-        url: "http://api_test.meetji.com/v2/ApiHome-saveSingle.htm",
+      my.request({
+        url: Interface.apiurl + Interface.addr.saveSingle,
         method: 'POST',
         data: data2DB,
         dataType: 'json',
@@ -171,7 +192,13 @@ Page({
           console.log(res);
           var result = res.data;
           if (result.success) {
-            my.navigateTo({ url: "/pages/detail/thx?key=" + result.result.id })
+            my.showToast({
+              type: 'none',
+              content: "领取成功！",
+              duration: 2000,
+              success: () => { },
+            });
+            my.navigateTo({ url: "pages/thx/thx?key=" + result.result.id })
           } else {
             my.showToast({
               type: 'none',
