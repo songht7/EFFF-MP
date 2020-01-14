@@ -1,5 +1,7 @@
+import graceChecker from "/util/graceChecker.js";
 Page({
   data: {
+    article_id: 35,
     canIUseAuthButton: true,
     nickName: "",
     avatar: "",
@@ -11,7 +13,9 @@ Page({
     index: 0,
     age: ['18岁以下', '19-22岁', '23-26岁', '27-35岁', '36-40岁', '41-50岁', '51岁'],
     ageIndex: 0,
-    hasUserInfo: false
+    formData: {},
+    hasUserInfo: false,
+    loading: false
   },
   onLoad(query) {
     // 页面加载
@@ -112,6 +116,99 @@ Page({
   },
   onAuthError(e) {
     console.log(e);
+  },
+  formSubmit(e) {
+    var _this = this;
+    if (_this.data.loading == true) {
+      return
+    }
+    //console.log('form发生了submit事件，携带数据为：' + JSON.stringify(e.detail.value))
+    var formData = e.detail.value;
+    console.log(formData)
+    //return
+    _this.setData({
+      loading: true
+    })
+    var rule = [{
+      name: "UserName",
+      checkType: "notnull",
+      checkRule: "",
+      errorMsg: "请填写姓名"
+    },
+    {
+      name: "UserPhone",
+      checkType: "phoneno",
+      checkRule: "",
+      errorMsg: "请填写正确的手机号"
+    }, {
+      name: "City",
+      checkType: "notnull",
+      checkRule: "",
+      errorMsg: "请选择城市"
+    }
+    ];
+    // console.log(rule)
+    // return
+    //进行表单检查
+    var checkRes = graceChecker.check(formData, rule);
+    if (checkRes) {
+      console.log("age:", _this.data.age);
+      var data2DB = {
+        "name": formData.UserName + ' --Source From - alipay',
+        "age_range": _this.data.age[formData.Age],
+        "sex": _this.data.genderList[formData.Gender],
+        "phone": formData.UserPhone,
+        "city": formData.City,
+        "article_id": _this.data.article_id
+      };
+      console.log("data2DB:", data2DB);
+      my.httpRequest({
+        url: "http://api_test.meetji.com/v2/ApiHome-saveSingle.htm",
+        method: 'POST',
+        data: data2DB,
+        dataType: 'json',
+        success: function (res) {
+          console.log(res);
+          var result = res.data;
+          if (result.success) {
+            my.navigateTo({ url: "/pages/detail/thx?key=" + result.result.id })
+          } else {
+            my.showToast({
+              type: 'none',
+              content: result.result,
+              duration: 3000,
+              success: () => { },
+            });
+          }
+        },
+        fail: function (res) {
+          my.showToast({
+            type: 'none',
+            content: '预约请求失败',
+            duration: 3000,
+            success: () => { },
+          });
+          console.log(JSON.stringify(res));
+        },
+        complete: function (res) {
+          _this.setData({
+            loading: false
+          })
+          // my.alert({title: 'complete'});
+        }
+      });
+    } else {
+      my.showToast({
+        type: 'none',
+        content: graceChecker.error,
+        duration: 3000,
+        success: () => { },
+      });
+      _this.setData({
+        loading: false
+      })
+    }
+
   },
   onHide() {
     // 页面隐藏
