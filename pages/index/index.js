@@ -1,5 +1,6 @@
 import graceChecker from "/util/graceChecker.js";
 import { Interface } from "/util/util.js";
+const url = Interface.apiurl + Interface.addr.getPhone;
 Page({
   data: {
     article_id: 35,
@@ -50,22 +51,26 @@ Page({
       ageIndex: e.detail.value,
     });
   },
-  onGetAuthorize(res) {
+  onGetAuthorizeUser(res) {
     my.getOpenUserInfo({
       fail: (fail) => {
         console.log(fail);
       },
       success: (res) => {
         let userInfo = JSON.parse(res.response).response // 以下方的报文格式解析两层 response
-        this.setData({
-          nickName: userInfo.nickName,
-          avatar: userInfo.avatar,
-          city: userInfo.city,
-          province: userInfo.province,
-          gender: userInfo.gender,
-          userInfo,
-          hasUserInfo: true,
-        });
+        console.log("userInfo:", userInfo);
+        if (userInfo.msg == 'Success') {
+          this.setData({
+            nickName: userInfo.nickName,
+            avatar: userInfo.avatar,
+            city: userInfo.city,
+            province: userInfo.province,
+            gender: userInfo.gender,
+            index: userInfo.gender == "m" ? 0 : 1,
+            userInfo,
+            hasUserInfo: true,
+          });
+        }
       }
     });
   },
@@ -102,12 +107,12 @@ Page({
     my.getPhoneNumber({
       success: (res) => {
         let encryptedData = res.response;
-        let url = Interface.apiurl + Interface.addr.getPhone;
         console.log(res);
         console.log(url);
         my.request({
           url: url,
           data: encryptedData,
+          method: "POST",
           success: function (res) {
             console.log(res);
             if (res.msg == 'Success') {

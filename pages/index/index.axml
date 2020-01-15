@@ -11,11 +11,11 @@
       <form onSubmit="formSubmit" id="ApplyForm">
         <input-item data-field="nickName" placeholder="姓名" type="text" name="UserName" value="{{nickName}}" clear="{{true}}" onInput="onItemInput" onClear="onClear">
         姓名
-          <button slot="extra" class="authorBtn" onTap="getUserInfo">
+          <!-- <button slot="extra" class="authorBtn" onTap="getUserInfo">
           授权基础信息
-          </button>
-          <!--<button slot="extra" class="authorBtn" a:if="{{canIUseAuthButton}}" open-type="getAuthorize" onGetAuthorize="onGetAuthorize" onError="onAuthError" scope='userInfo'>
-          授权基础信息</button> -->
+          </button> -->
+          <button slot="extra" class="authorBtn" a:if="{{canIUseAuthButton}}" open-type="getAuthorize" onGetAuthorize="onGetAuthorizeUser" onError="onAuthError" scope='userInfo'>
+          授权基础信息</button>
         </input-item>
         <input-item data-field="mobile" placeholder="手机号" type="phone" name="UserPhone" value="{{mobile}}" clear="{{true}}" onInput="onItemInput" onClear="onClear">
         手机号

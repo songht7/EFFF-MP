@@ -8,7 +8,7 @@
   background:rgb(250, 249, 249);
   border-color:#ddd;
   color: #666;
-  line-height: 1.4;
+  line-height: 1.8;
   font-size:28rpx;
   padding: 2rpx 10rpx;
 }
@@ -37,4 +37,17 @@
   width: 32rpx;
   height: 32rpx;
   margin-left: 16rpx;
+}
+.apply-btn{
+	width: 100%;
+	color: #fff;
+	background: linear-gradient(to right, rgba(249, 215, 68, 1), rgba(252, 165, 38, 1));
+	/* box-shadow: 3px 5px 10px -1px rgba(249, 215, 68, 0.8); */
+	text-align: center;
+	line-height: 2;
+	border-radius: 10rpx;
+	font-size: 36rpx;
+	letter-spacing: 1px;
+	padding: 15rpx 0;
+	border-color: none;
 }
