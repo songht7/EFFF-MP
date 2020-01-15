@@ -59,18 +59,16 @@ Page({
       success: (res) => {
         let userInfo = JSON.parse(res.response).response // 以下方的报文格式解析两层 response
         console.log("userInfo:", userInfo);
-        if (userInfo.msg == 'Success') {
-          this.setData({
-            nickName: userInfo.nickName,
-            avatar: userInfo.avatar,
-            city: userInfo.city,
-            province: userInfo.province,
-            gender: userInfo.gender,
-            index: userInfo.gender == "m" ? 0 : 1,
-            userInfo,
-            hasUserInfo: true,
-          });
-        }
+        this.setData({
+          nickName: userInfo.nickName,
+          avatar: userInfo.avatar,
+          city: userInfo.city,
+          province: userInfo.province,
+          gender: userInfo.gender,
+          index: userInfo.gender == "m" ? 0 : 1,
+          userInfo,
+          hasUserInfo: true,
+        });
       }
     });
   },

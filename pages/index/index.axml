@@ -43,7 +43,7 @@
             </picker>
           </flex-item>
         </flex>
-        <input-item data-field="city" placeholder="城市" type="text" name="City" value="{{city}}" clear="{{true}}" onInput="onItemInput" onClear="onClear">
+        <input-item data-field="city" placeholder="城市" type="text" name="City" value="{{province}}{{city?' - '+city:''}}" clear="{{true}}" onInput="onItemInput" onClear="onClear">
         城市
         </input-item>
         <button formType="submit" :loading="loading" class="apply-btn apply-btn-submit">立即领取免费课程</button>
