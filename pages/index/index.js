@@ -203,7 +203,7 @@ Page({
               duration: 2000,
               success: () => { },
             });
-            my.navigateTo({ url: "pages/thx/thx?key=" + result.result.id })
+            my.navigateTo({ url: "/pages/thx/thx?key=" + result.result.id })
           } else {
             my.showToast({
               type: 'none',
